@@ -1,4 +1,3 @@
---Chapter 9
 add :: Num a => a -> a -> a
 
 add x y = x + y
@@ -32,7 +31,6 @@ mapl4 :: (a -> b) -> [[a]] -> [[b]]
 mapl4 = map' . map'
 
 
--- Haskell won't let us re-use a name in a script, so we call this add2
 add2 :: Num a => a -> a -> a
 
 add2 = \x -> \y -> x + y

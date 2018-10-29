@@ -1,6 +1,7 @@
 import System.IO
 import Text.Read
 
+
 printDictEntry :: Show a => (a, String) -> IO ()
 
 printDictEntry (k, v) =
@@ -115,6 +116,7 @@ dictionaryOfFile filename =
 
 
 -- Extended example: text file statistics
+
 handleStatistics :: (Show a, Num a) => Handle -> a -> IO ()
 
 handleStatistics fh lines =
@@ -127,6 +129,7 @@ handleStatistics fh lines =
        do line <- getLine
           handleStatistics fh (lines + 1)
 
+
 fileStatistics :: FilePath -> IO ()
 
 fileStatistics fileName =
@@ -136,8 +139,12 @@ fileStatistics fileName =
 
 
 -- Second version, with characters and sentences.
+
+length' :: Num a => [b] -> a
+
 length' [] = 0
 length' (_:t) = 1 + length' t 
+
 
 handleStatistics2 ::
    (Show a, Show b, Show c, Show d, Num a, Num b, Num c, Num d) =>

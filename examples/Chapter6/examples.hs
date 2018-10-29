@@ -27,7 +27,7 @@ isEven x =
   x `mod` 2 == 0
 
 
--- Haskell won't let us re-use a name in a script, so we call this length'2
+-- Haskell won't let us re-use a name in a script, so we call this evens2
 
 evens2 :: Integral a => [a] -> [Bool]
 

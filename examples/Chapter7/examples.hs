@@ -78,8 +78,6 @@ mapMaybe2 f (h:t) =
     rs = mapMaybe2 f t
 
 
--- Haskell won't let us re-use a name in a script, so we call this safeDiv2
-
 safeDiv2 :: Integral a => a -> a -> Either String a  
 
 safeDiv2 _ 0 = Left "Division by Zero"

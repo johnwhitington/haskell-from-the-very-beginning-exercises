@@ -60,14 +60,6 @@ makeSet :: Eq a => [a] -> [a]
 makeSet [] = []
 makeSet (h:t) = if elem' h t then makeSet t else h : makeSet t
 
-revInner :: [a] -> [a] -> [a]
-reverse' :: [a] -> [a]
-
-revInner a [] = a
-revInner a (h:t) = revInner (h : a) t
-
-reverse' l =
-  revInner [] l
 
 answer1 :: Integral a => [a]
 
@@ -79,7 +71,7 @@ answer2 :: Integral a => [a]
 answer2 = [x | x <- [1 .. 9999], x `mod` 21 == 0 || x `mod` 83 == 0]
 
 
-answer2 :: Integral a => [a]
+answer3 :: Integral a => [a]
 
 answer3 = [x | x <- [1 .. 9999], x `mod` 21 == 0, x `mod` 83 == 0]
 

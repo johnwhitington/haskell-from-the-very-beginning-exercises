@@ -15,6 +15,15 @@ reverse' l =
   revInner [] l
 
 
+filter' :: (a -> Bool) -> [a] -> [a]
+
+filter' f [] = []
+filter' f (h:t) =
+  if f h
+    then h : filter' f t
+    else filter' f t
+
+
 linesOfFile :: [String] -> Handle -> IO [String]
 
 linesOfFile l h =
