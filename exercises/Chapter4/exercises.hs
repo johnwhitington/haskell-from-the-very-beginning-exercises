@@ -4,10 +4,12 @@ revInner :: [a] -> [a] -> [a]
 revInner a [] = a
 revInner a (h:t) = revInner (h : a) t
 
+
 reverse' :: [a] -> [a]
 
 reverse' l =
   revInner [] l
+
 
 evenElements :: [a] -> [a]
 
@@ -86,6 +88,4 @@ countTrue3 l = length' [x | x <- l, x == True]
 
 
 countTrue4 l = length' [x | x <- l, x]
-
-
 

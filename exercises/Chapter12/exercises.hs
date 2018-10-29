@@ -1,5 +1,3 @@
---Question 1
-
 roundNum :: (Integral b, RealFrac a) => a -> b
 
 roundNum x =
@@ -9,14 +7,12 @@ roundNum x =
     if fromIntegral c - x <= x - fromIntegral f then c else f
 
 
---Question 2
 between :: (Fractional a, Fractional b) => (a, b) -> (a, b) -> (a, b)
 
 between (x, y) (x', y') =
   ((x + x') / 2, (y + y') / 2)
 
 
---Question 3
 parts :: (Num b, RealFrac a) => a -> (b, a)
 
 parts x =
@@ -27,7 +23,6 @@ parts x =
     (fromIntegral (floor x), x - fromIntegral (floor x))
 
 
---Question 4
 replicate' :: (Eq a, Num a) => a -> b -> [b]
 
 replicate' 0 _ = []
@@ -48,7 +43,6 @@ star x =
       makeLine (if i' == 0 then 0 else i' - 1)
 
 
---Question 5
 plot :: (Ord a, Num a, RealFrac b) => (a -> b) -> a -> a -> a -> String
 
 plot f a b dy =

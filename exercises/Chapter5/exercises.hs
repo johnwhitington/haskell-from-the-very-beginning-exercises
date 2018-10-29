@@ -3,6 +3,7 @@ length' :: Num b => [a] -> b
 length' [] = 0
 length' (_:t) = 1 + length' t
 
+
 take' :: (Eq a, Num a) => a -> [b] -> [b]
 
 take' 0 l = []

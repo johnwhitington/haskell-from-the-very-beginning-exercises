@@ -34,13 +34,15 @@ member x (h:t) = x == h || member x t
 
 
 dictionaryOfPairsInner :: Eq a => [a] -> [(a, b)] -> [(a, b)]
-dictionaryOfPairs :: Eq a => [(a, b)] -> [(a, b)]
 
 dictionaryOfPairsInner keysSeen [] = []
 dictionaryOfPairsInner keysSeen ((k, v):t) =
    if member k keysSeen
      then dictionaryOfPairsInner keysSeen t
      else (k, v) : dictionaryOfPairsInner (k : keysSeen) t
+
+
+dictionaryOfPairs :: Eq a => [(a, b)] -> [(a, b)]
 
 dictionaryOfPairs l =
   dictionaryOfPairsInner [] l
@@ -51,6 +53,7 @@ add :: Eq a => a -> b -> [(a, b)] -> [(a, b)]
 add k v [] = [(k, v)]
 add k v ((k', v'):t) =
   if k == k' then (k, v) : t else (k', v') : add k v t
+
 
 union :: Eq a => [(a, b)] -> [(a, b)] -> [(a, b)]
 

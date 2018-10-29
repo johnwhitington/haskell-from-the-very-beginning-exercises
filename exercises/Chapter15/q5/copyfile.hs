@@ -29,3 +29,4 @@ main =
      case args of
        [inFile, outFile] -> copyFile inFile outFile
        _ -> putStrLn "Usage: copyFile in out"
+

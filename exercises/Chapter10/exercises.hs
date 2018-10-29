@@ -4,19 +4,16 @@ map' f [] = []
 map' f (h:t) = f h : map' f t
 
 
---Question 1
 data Rect a = Square a
             | Rectangle a a deriving Show
 
 
---Question 2
 area :: Num a => Rect a -> a
 
 area (Square s) = s * s
 area (Rectangle w h) = w * h
 
 
---Question 3
 rotate :: Ord a => Rect a -> Rect a
 
 rotate (Rectangle w h) =
@@ -24,7 +21,6 @@ rotate (Rectangle w h) =
 rotate (Square s) = Square s
 
 
---Question 4
 widthOfRect :: Rect a -> a
 
 widthOfRect (Square s) = s
@@ -56,8 +52,8 @@ pack rs =
   sort rectCompare (map' rotate rs)
 
 
---Question 5
 data Sequence a = Nil | Cons a (Sequence a) deriving Show
+
 
 seqTake :: (Eq a, Num a) => a -> Sequence b -> Maybe (Sequence b)
 
@@ -82,7 +78,6 @@ seqMap _ Nil = Nil
 seqMap f (Cons h t) = Cons (f h) (seqMap f t)
 
 
---Question 6
 power :: (Eq b, Num a, Num b) => a -> b -> a
 
 power x 0 = 1

@@ -1,6 +1,7 @@
 import System.Environment
 import System.IO
 
+
 revInner :: [a] -> [a] -> [a]
 
 revInner a [] = a
@@ -49,3 +50,4 @@ main =
      case args of
        [inFile, outFile] -> reverseLines inFile outFile
        _ -> do putStrLn "Usage: revlines input_filename output_filename"
+

@@ -1,5 +1,4 @@
 smallestInner :: (Num a, Ord a) => Maybe a -> [a] -> Maybe a
-smallest :: (Num a, Ord a) => [a] -> Maybe a
 
 smallestInner Nothing [] = Nothing
 smallestInner (Just a) [] = Just a
@@ -11,6 +10,9 @@ smallestInner (Just a) (h:t) =
   if h > 0 && h > a
     then smallestInner (Just h) t
     else smallestInner (Just a) t
+
+
+smallest :: (Num a, Ord a) => [a] -> Maybe a
 
 smallest x = smallestInner Nothing x
 
@@ -24,10 +26,12 @@ smallest0 l =
 
 
 sqrtInner :: (Num a, Ord a) => a -> a -> a
-sqrtMain :: (Num a, Ord a) => a -> Maybe a
 
 sqrtInner x n =
   if x * x > n then x - 1 else sqrtInner (x + 1) n
+
+
+sqrtMain :: (Num a, Ord a) => a -> Maybe a
 
 sqrtMain n =
   if n < 0 then Nothing else Just (sqrtInner 1 n)

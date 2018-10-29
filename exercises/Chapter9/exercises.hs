@@ -11,6 +11,8 @@ map' f [] = []
 map' f (h:t) = f h : map' f t
 
 
+not' :: Bool -> Bool
+
 not' False = True
 not' True = False
 
@@ -52,7 +54,6 @@ mapll :: (a -> b) -> [[[a]]] -> [[[b]]]
 mapll f l = map' (map' (map' f)) l
 
 
--- Haskell won't let us re-use a name in a script, so we call this length'2
 mapll2 :: (a -> b) -> [[[a]]] -> [[[b]]]
 
 mapll2 f  = map' (map' (map' f))

@@ -61,3 +61,4 @@ main =
             putStrLn (show size)
        _ ->
          putStrLn "Usage: size filename"
+

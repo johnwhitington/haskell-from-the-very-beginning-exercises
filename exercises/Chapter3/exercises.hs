@@ -31,6 +31,7 @@ not'3 :: Bool -> Bool
 not'3 x | x == False = True
         | x == True  = False
 
+
 sumMatch2 :: (Eq a, Num a) => a -> a
 
 sumMatch2 n | n == 1    = 1

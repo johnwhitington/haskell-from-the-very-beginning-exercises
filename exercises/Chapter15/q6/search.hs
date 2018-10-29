@@ -1,4 +1,3 @@
--- Chapter 15
 import System.Environment
 import System.IO
 

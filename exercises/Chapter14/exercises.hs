@@ -2,7 +2,6 @@ import Text.Read
 import System.IO
 
 
---Question 1
 printIntegersInner :: Show a => [a] -> IO ()
 
 printIntegersInner [] = return ()
@@ -22,7 +21,6 @@ printIntegers l =
      putStr "]"
 
 
---Question 2
 getIntegerMaybe :: IO (Maybe Integer)
 
 getIntegerMaybe =
@@ -43,7 +41,6 @@ readThree =
             readThree
 
 
---Question 3
 readDictNumber :: (Eq a, Num a) => a -> IO [(Integer, String)]
 
 readDictNumber n =
@@ -76,7 +73,6 @@ readDict =
            readDictNumber i 
 
 
---Question 4
 map' :: (a -> b) -> [a] -> [b]
 
 map' f [] = []
@@ -109,7 +105,6 @@ table filename n =
      hClose fh
 
 
---Question 5
 countLinesHandle :: Num a => Handle -> IO a
 
 countLinesHandle fh =
@@ -129,7 +124,6 @@ countLines fileName =
      return lines
 
 
---Question 6
 copyFileHandle :: Handle -> Handle -> IO ()
 
 copyFileHandle fromHandle toHandle =

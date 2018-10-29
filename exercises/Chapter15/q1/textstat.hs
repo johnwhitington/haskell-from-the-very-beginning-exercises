@@ -1,11 +1,14 @@
 -- Text Statistics
 module Textstat where
 
+
 import System.IO
+
 
 data Tree a =
     Br a (Tree a) (Tree a)
   | Lf deriving Show
+
 
 type Stats = (Integer, Integer, Integer, Integer, Tree (Char, Integer))
 

@@ -18,7 +18,7 @@ interleave :: [a] -> [a] -> [a]
 interleave (h:t) l =
   h : interleave l t
 
--- Question 1
+
 doubleFrom :: Num a => a -> [a]
 
 doubleFrom n = n : doubleFrom (n * 2)
@@ -28,12 +28,12 @@ doubles :: Num a => [a]
 
 doubles = doubleFrom 1
 
--- Question 2
+
 repeating :: [a] -> [a]
 
 repeating l = l ++ repeating l
 
--- Question 3
+
 fibInner :: Num a => a -> a -> [a]
 
 fibInner x y = x : fibInner y (x + y)
@@ -43,7 +43,7 @@ fib :: Num a => [a]
 
 fib = fibInner 0 1
 
--- Question 4
+
 data Tree a = Br a (Tree a) (Tree a)
 
 
@@ -63,7 +63,6 @@ makeList :: Tree a -> [a]
 makeList (Br x l r) = x : interleave (makeList l) (makeList r) 
 
 
--- Question 5
 unleave :: [a] -> ([a], [a])
 
 unleave (h : h' : t) =
@@ -73,7 +72,6 @@ unleave (h : _) = ([h], [])
 unleave [] = ([], [])
 
 
--- Question 6
 letterString :: Int -> String
 
 letterString n =

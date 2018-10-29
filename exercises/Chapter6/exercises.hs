@@ -107,7 +107,9 @@ reverse' :: [a] -> [a]
 reverse' [] = []
 reverse' (h:t) = reverse' t ++ [h]
 
+
 f l = reverse' (sort (<) (filter' (\x -> x `mod` 15 == 0) l))
+
 
 f2 l = (reverse' . sort (<)) (filter' (\x -> x `mod` 15 == 0) l)
 

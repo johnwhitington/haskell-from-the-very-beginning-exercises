@@ -3,6 +3,7 @@ map' :: (a -> b) -> [a] -> [b]
 map' f [] = []
 map' f (h:t) = f h : map' f t
 
+
 data Tree a =
     Lf
   | Br a (Tree a) (Tree a) deriving (Eq)
