@@ -1,0 +1,55 @@
+timesTen x = x * 10
+
+:{
+bothNonZero x y =
+  x /= 0 && y /= 0
+:}
+
+:{
+sum' n =
+  if n == 1 then 1 else n + sum' (n - 1)
+:}
+
+:{
+power x n =
+  if n == 0 then 1 else (if n == 1 then x else x * power x (n - 1))
+:}
+
+:{
+power x n =
+  if n == 0 then 1 else if n == 1 then x else x * power x (n - 1)
+:}
+
+:{
+power x n =
+  if n == 0 then 1 else
+  if n == 1 then x else
+  x * power x (n - 1)
+:}
+
+:{
+power x n =
+  if n == 0 then 1
+  else if n == 1 then x
+  else x * power x (n - 1)
+:}
+
+:{
+isVowel c =
+  c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'
+:}
+
+not' x = if x then False else True
+
+:{
+isConsonant c =
+  not' (isVowel c)
+:}
+
+:{
+factorial n =
+  if n < 0 then 0 else
+  if n == 0 then 1 else
+  n * factorial (n - 1)
+:}
+

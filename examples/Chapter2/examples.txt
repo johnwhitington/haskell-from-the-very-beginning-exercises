@@ -1,0 +1,84 @@
+These examples can be cut and pasted into Haskell
+
+200 * 200 * 200
+
+x = 200
+
+let x = 200 in x * x * x
+
+let a = 500 in (let b = a * a in a + b)
+
+let a = 500 in let b = a * a in a + b
+
+200 * 200
+
+it * 200
+
+it * 200
+
+:type False
+
+:type False && True
+
+:type 'x'
+
+:type 50
+
+50 + 0.6
+
+50 + 6
+
+cube x = x * x * x
+
+cube 200
+
+cube False
+
+neg x = if x < 0 then True else False
+
+neg (-30)
+
+neg x = x < 0
+
+:type neg
+
+isVowel c = c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'
+
+:{
+isVowel c =
+  c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'
+:}
+
+:{
+addToTen a b =
+  a + b == 10
+:}
+
+:{
+factorial n =
+  if n == 1 then 1 else n * factorial (n - 1)
+:}
+
+factorial 4
+
+factorial (-1)
+
+:{
+gcd' a b =
+  if b == 0 then a else gcd' b (mod a b)
+:}
+
+gcd' 64000 356
+
+:{
+gcd' a b =
+  if b == 0 then a else gcd' b (a `mod` b)
+:}
+
+:{
+not' x =
+  if x then False else True
+:}
+
+:type not'
+

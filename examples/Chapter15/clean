@@ -1,0 +1,2 @@
+#!/bin/sh
+rm -f stats stats.hi stats.o textstat.hi textstat.o
