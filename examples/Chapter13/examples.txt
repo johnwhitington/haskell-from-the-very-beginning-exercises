@@ -55,4 +55,5 @@ allFrom l =
 
 allOnes = allFrom []
 
+take' 20 allOnes
 
