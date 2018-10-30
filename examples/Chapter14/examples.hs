@@ -126,7 +126,7 @@ handleStatistics fh lines =
           putStr (show lines)
           putStrLn " lines."
      else
-       do line <- getLine
+       do line <- hGetLine fh
           handleStatistics fh (lines + 1)
 
 
