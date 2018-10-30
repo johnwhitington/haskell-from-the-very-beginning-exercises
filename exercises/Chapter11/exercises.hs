@@ -6,7 +6,7 @@ map' f (h:t) = f h : map' f t
 
 data Tree a =
     Lf
-  | Br a (Tree a) (Tree a) deriving (Eq)
+  | Br a (Tree a) (Tree a) deriving Show
 
 
 treeMember :: Eq a => a -> Tree a -> Bool

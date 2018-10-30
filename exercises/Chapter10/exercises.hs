@@ -82,7 +82,7 @@ power :: (Eq b, Num a, Num b) => a -> b -> a
 
 power x 0 = 1
 power x 1 = x
-power x n = power x (n - 1)
+power x n = x * power x (n - 1)
 
 
 data Expr a = Num a
