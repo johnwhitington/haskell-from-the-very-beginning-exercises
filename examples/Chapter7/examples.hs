@@ -43,18 +43,26 @@ drop' 0 l = l
 drop' n (h:t) = drop' (n - 1) t
 
 
-safeTake :: (Eq a, Num a) => a -> [b] -> Maybe [b]
+length' :: Num b => [a] -> b
 
-safeTake 0 _ = Just []
-safeTake _ [] = Nothing
-safeTake n l = Just (take' n l)
+length' [] = 0
+length' (_:t) = 1 + length' t
 
 
-safeDrop :: (Eq a, Num a) => a -> [b] -> Maybe [b]
+safeTake :: (Ord a, Num a) => a -> [b] -> Maybe [b]
 
-safeDrop 0 x = Just x
-safeDrop n [] = Nothing
-safeDrop n (h:t) = Just (drop' n t)
+safeTake n l =
+  if n >= 0 && n <= length' l
+    then Just (take' n l)
+    else Nothing
+
+
+safeDrop :: (Ord a, Num a) => a -> [b] -> Maybe [b]
+
+safeDrop n l =
+  if n >= 0 && n <= length' l
+    then Just (drop' n l)
+    else Nothing
 
 
 mapMaybe :: (a -> Maybe b) -> [a] -> [b]
