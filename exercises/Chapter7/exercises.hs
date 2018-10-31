@@ -7,7 +7,7 @@ smallestInner Nothing (h:t) =
     then smallestInner (Just h) t
     else smallestInner Nothing t
 smallestInner (Just a) (h:t) =
-  if h > 0 && h > a
+  if h > 0 && h < a
     then smallestInner (Just h) t
     else smallestInner (Just a) t
 
