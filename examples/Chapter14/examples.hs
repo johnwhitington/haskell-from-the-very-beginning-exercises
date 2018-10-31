@@ -85,7 +85,7 @@ entryOfHandle :: Handle -> IO (Maybe (Integer, String))
 entryOfHandle fh =
   do k <- hGetLine fh
      v <- hGetLine fh
-     integer <- getIntegerMaybe
+     let integer = (readMaybe k :: Maybe Integer)
      case integer of
        Nothing -> return Nothing
        Just k' -> return (Just (k', v))
