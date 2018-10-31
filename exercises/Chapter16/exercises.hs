@@ -34,11 +34,11 @@ isolate l =
 
 f :: String -> String
 
-f s = unwords (reverse (map reverse (words s)))
+f s = unwords (reverse (words s))
 
 f2 :: String -> String
 
-f2 = unwords . reverse . (map reverse) . words
+f2 = unwords . reverse . words
 
 
 toLower2 c | c >= 'A' && c <= 'Z'  = chr (ord c + 32)

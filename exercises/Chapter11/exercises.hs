@@ -60,6 +60,9 @@ treeUnion t t' =
 data MTree a = Branch a [MTree a] deriving Show
 
 
+exampleMTree = Branch 1 [Branch 2 [], Branch 3 []]
+
+
 sum' :: Num a => [a] -> a
 
 sum' [] = 0
