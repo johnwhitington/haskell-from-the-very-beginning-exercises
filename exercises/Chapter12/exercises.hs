@@ -1,3 +1,9 @@
+between :: (Fractional a, Fractional b) => (a, b) -> (a, b) -> (a, b)
+
+between (x, y) (x', y') =
+  ((x + x') / 2, (y + y') / 2)
+
+
 roundNum :: (Integral b, RealFrac a) => a -> b
 
 roundNum x =
@@ -5,12 +11,6 @@ roundNum x =
       f = floor x
   in
     if fromIntegral c - x <= x - fromIntegral f then c else f
-
-
-between :: (Fractional a, Fractional b) => (a, b) -> (a, b) -> (a, b)
-
-between (x, y) (x', y') =
-  ((x + x') / 2, (y + y') / 2)
 
 
 parts :: (Num b, RealFrac a) => a -> (b, a)
