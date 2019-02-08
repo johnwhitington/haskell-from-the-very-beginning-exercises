@@ -28,7 +28,13 @@ not'2 x | x == False = True
 
 not'3 :: Bool -> Bool
 
-not'3 x | x == False = True
+not'3 x | x          = False
+        | otherwise  = True
+
+
+not'4 :: Bool -> Bool
+
+not'4 x | x == False = True
         | x == True  = False
 
 
