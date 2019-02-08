@@ -53,7 +53,7 @@ allFrom l =
   l : interleave (allFrom (0 : l)) (allFrom (1 : l))
 :}
 
-allOnes = allFrom []
+allLists = allFrom []
 
-take' 20 allOnes
+take' 20 allLists
 
