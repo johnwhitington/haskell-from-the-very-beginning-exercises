@@ -111,5 +111,5 @@ reverse' (h:t) = reverse' t ++ [h]
 f l = reverse' (sort (<) (filter' (\x -> x `rem` 15 == 0) l))
 
 
-f2 l = (reverse' . sort (<)) (filter' (\x -> x `rem` 15 == 0) l)
+f2 = reverse' . sort (<) . filter' (\x -> x `rem` 15 == 0)
 
