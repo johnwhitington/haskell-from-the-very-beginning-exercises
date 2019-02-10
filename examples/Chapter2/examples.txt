@@ -65,14 +65,14 @@ factorial (-1)
 
 :{
 gcd' a b =
-  if b == 0 then a else gcd' b (mod a b)
+  if b == 0 then a else gcd' b (rem a b)
 :}
 
 gcd' 64000 3456
 
 :{
 gcd' a b =
-  if b == 0 then a else gcd' b (a `mod` b)
+  if b == 0 then a else gcd' b (a `rem` b)
 :}
 
 :{

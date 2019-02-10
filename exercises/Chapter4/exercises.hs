@@ -65,17 +65,17 @@ makeSet (h:t) = if elem' h t then makeSet t else h : makeSet t
 
 answer1 :: Integral a => [a]
 
-answer1 = [x | x <- [1 .. 9999], x `mod` 21 == 0 && x `mod` 83 == 0]
+answer1 = [x | x <- [1 .. 9999], x `rem` 21 == 0 && x `rem` 83 == 0]
 
 
 answer2 :: Integral a => [a]
 
-answer2 = [x | x <- [1 .. 9999], x `mod` 21 == 0 || x `mod` 83 == 0]
+answer2 = [x | x <- [1 .. 9999], x `rem` 21 == 0 || x `rem` 83 == 0]
 
 
 answer3 :: Integral a => [a]
 
-answer3 = [x | x <- [1 .. 9999], x `mod` 21 == 0, x `mod` 83 == 0]
+answer3 = [x | x <- [1 .. 9999], x `rem` 21 == 0, x `rem` 83 == 0]
 
 
 length' :: Num b => [a] -> b

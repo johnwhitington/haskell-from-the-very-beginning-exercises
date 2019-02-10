@@ -80,7 +80,7 @@ letterString n =
       [chr (n + 64)]
     else
       letterString ((n - 1) `div` 26) ++
-      letterString (((n - 1) `mod` 26) + 1)
+      letterString (((n - 1) `rem` 26) + 1)
 
 
 alphas :: [String]

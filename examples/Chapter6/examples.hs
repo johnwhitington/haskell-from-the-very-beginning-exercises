@@ -7,7 +7,7 @@ doubleList (h:t) = (h * 2) : doubleList t
 evens :: Integral a => [a] -> [Bool]
 
 evens [] = []
-evens (h:t) = (h `mod` 2 == 0) : evens t
+evens (h:t) = (h `rem` 2 == 0) : evens t
 
 
 map' :: (a -> b) -> [a] -> [b]
@@ -24,7 +24,7 @@ halve x = x `div` 2
 isEven :: Integral a => a -> Bool
 
 isEven x =
-  x `mod` 2 == 0
+  x `rem` 2 == 0
 
 
 -- Haskell won't let us re-use a name in a script, so we call this evens2
@@ -37,7 +37,7 @@ evens2 l = map' isEven l
 evens3 :: Integral a => [a] -> [Bool]
 
 evens3 l =
-  map' (\x -> x `mod` 2 == 0) l
+  map' (\x -> x `rem` 2 == 0) l
 
 
 greater :: Ord a => a -> a -> Bool

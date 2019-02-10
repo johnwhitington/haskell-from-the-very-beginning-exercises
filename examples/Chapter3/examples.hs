@@ -19,7 +19,7 @@ isVowel _ = False
 gcd' :: Integral a => a -> a -> a
 
 gcd' a 0 = a
-gcd' a b = gcd' b (a `mod` b)
+gcd' a b = gcd' b (a `rem` b)
 
 
 sign :: (Ord a, Num a, Num b) => a -> b
