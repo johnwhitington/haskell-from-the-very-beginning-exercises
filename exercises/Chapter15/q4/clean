@@ -1,1 +1,1 @@
-rm -f sort.hi sort.o sort
+rm -f Sort.hi Sort.o Sort

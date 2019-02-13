@@ -1,2 +1,2 @@
 #!/bin/sh
-rm -f stats stats.hi stats.o textstat.hi textstat.o
+rm -f Stats Stats.hi Stats.o TextStat.hi TextStat.o

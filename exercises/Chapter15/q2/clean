@@ -1,1 +1,1 @@
-rm -f revlines.hi revlines.o revlines
+rm -f RevLines.hi RevLines.o RevLines

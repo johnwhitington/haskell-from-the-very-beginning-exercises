@@ -1,1 +1,1 @@
-rm -f copyfile.hi copyfile.o copyfile
+rm -f CopyFile.hi CopyFile.o CopyFile

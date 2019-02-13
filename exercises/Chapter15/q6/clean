@@ -1,1 +1,1 @@
-rm -f search.hi search.o search
+rm -f Search.hi Search.o Search
