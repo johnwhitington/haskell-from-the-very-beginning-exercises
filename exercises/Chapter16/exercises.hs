@@ -12,20 +12,6 @@ process2 :: String -> String
 process2 = map toLower
 
 
-joinNames :: [String] -> [String] -> [String]
-
-joinNames firsts seconds =
-  zipWith
-    (++)
-    firsts
-    (zipWith (++) (replicate (length seconds) " ") seconds)
-
-
-addNums :: Num a => [a] -> [a] -> [a]
-
-addNums = zipWith (+)
-
-
 isolate :: (Ord a, Num a) => [a] -> [a]
 
 isolate l =
