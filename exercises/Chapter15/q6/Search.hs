@@ -23,14 +23,14 @@ filter' f (h:t) =
     else filter' f t
 
 
-linesOfFile :: [String] -> Handle -> IO [String]
+linesOfFile :: Handle -> IO [String]
 
-linesOfFile l h =
+linesOfFile h =
   do finished <- hIsEOF h
-     if finished then return (reverse' l) else
+     if finished then return [] else
        do x <- hGetLine h
-          rest <- linesOfFile (x : l) h
-          return (reverse' rest)
+          rest <- linesOfFile h
+          return (x : rest)
 
 
 matches1 :: String -> String -> Bool
@@ -59,7 +59,7 @@ search :: FilePath -> String -> IO ()
 
 search inFile searchString =
   do inHandle <- openFile inFile ReadMode
-     lines <- linesOfFile [] inHandle
+     lines <- linesOfFile inHandle
      let matched = filter' (matches searchString) lines
      printStrings matched
      hClose inHandle

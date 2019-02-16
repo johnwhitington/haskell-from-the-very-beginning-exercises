@@ -59,14 +59,14 @@ mergeSort l =
     merge (mergeSort left) (mergeSort right)
 
 
-linesOfFile :: Handle -> [String] -> IO [String]
+linesOfFile :: Handle -> IO [String]
 
-linesOfFile inHandle lines =
-  do finished <- hIsEOF inHandle
-     if finished then return (reverse' lines) else
-       do line <- hGetLine inHandle
-          rest <- linesOfFile inHandle (line : lines)
-          return (reverse' rest)
+linesOfFile h =
+  do finished <- hIsEOF h
+     if finished then return [] else
+       do x <- hGetLine h
+          rest <- linesOfFile h
+          return (x : rest)
 
 
 linesToFile :: Handle -> [String] -> IO ()
@@ -88,7 +88,7 @@ sortNums :: FilePath -> FilePath -> IO ()
 sortNums inFile outFile =
   do inHandle <- openFile inFile ReadMode
      outHandle <- openFile outFile WriteMode
-     lines <- linesOfFile inHandle []
+     lines <- linesOfFile inHandle
      linesToFile outHandle (sortLines lines)
      hClose inHandle
      hClose outHandle 

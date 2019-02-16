@@ -32,21 +32,21 @@ sum' [] = 0
 sum' (h:t) = h + sum' t
 
 
-linesOfFile :: [String] -> Handle -> IO [String]
+linesOfFile :: Handle -> IO [String]
 
-linesOfFile l h =
+linesOfFile h =
   do finished <- hIsEOF h
-     if finished then return (reverse' l) else
+     if finished then return [] else
        do x <- hGetLine h
-          rest <- linesOfFile (x:l) h
-          return (reverse' rest)
+          rest <- linesOfFile h
+          return (x : rest)
 
 
 numChars :: Num a => FilePath -> IO a
 
 numChars inFile =
   do inHandle <- openFile inFile ReadMode
-     lines <- linesOfFile [] inHandle
+     lines <- linesOfFile inHandle
      hClose inHandle
      return (sum' (map' length' lines)) 
 

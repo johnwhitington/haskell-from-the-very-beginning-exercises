@@ -14,14 +14,14 @@ reverse' l =
   revInner [] l
 
 
-linesOfFile :: [String] -> Handle -> IO [String]
+linesOfFile :: Handle -> IO [String]
 
-linesOfFile l h =
+linesOfFile h =
   do finished <- hIsEOF h
-     if finished then return (reverse' l) else
+     if finished then return [] else
        do x <- hGetLine h
-          rest <- linesOfFile (x:l) h
-          return (reverse' rest)
+          rest <- linesOfFile h
+          return (x : rest)
 
 
 writeLines :: Handle -> [String] -> IO ()
@@ -37,7 +37,7 @@ reverseLines :: FilePath -> FilePath -> IO ()
 reverseLines inFile outFile =
   do inHandle <- openFile inFile ReadMode
      outHandle <- openFile outFile WriteMode
-     lines <- linesOfFile [] inHandle
+     lines <- linesOfFile inHandle
      writeLines outHandle (reverse' lines)
      hClose inHandle
      hClose outHandle
