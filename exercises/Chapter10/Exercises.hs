@@ -1,7 +1,7 @@
 map' :: (a -> b) -> [a] -> [b]
 
 map' f [] = []
-map' f (h:t) = f h : map' f t
+map' f (x:xs) = f x : map' f xs
 
 
 data Rect a = Square a
@@ -36,14 +36,14 @@ rectCompare a b =
 insert :: (a -> a -> Bool) -> a -> [a] -> [a]
 
 insert f x [] = [x]
-insert f x (h:t) =
-  if f x h then x : h : t else h : insert f x t
+insert f x (y:ys) =
+  if f x y then x : y : ys else y : insert f x ys
 
 
 sort :: (a -> a -> Bool) -> [a] -> [a]
 
 sort f [] = []
-sort f (h:t) = insert f h (sort f t)
+sort f (x:xs) = insert f x (sort f xs)
 
 
 pack :: Ord a => [Rect a] -> [Rect a]
@@ -59,23 +59,23 @@ seqTake :: (Eq a, Num a) => a -> Sequence b -> Maybe (Sequence b)
 
 seqTake 0 _ = Just Nil
 seqTake _ Nil = Nothing
-seqTake n (Cons h t) =
-  case seqTake (n - 1) t of
+seqTake n (Cons x xs) =
+  case seqTake (n - 1) xs of
     Nothing -> Nothing
-    Just l -> Just (Cons h l)
+    Just l -> Just (Cons x l)
 
 
 seqDrop :: (Eq a, Num a) => a -> Sequence b -> Maybe (Sequence b)
 
 seqDrop 0 l = Just l
 seqDrop _ Nil = Nothing
-seqDrop n (Cons _ t) = seqDrop (n - 1) t
+seqDrop n (Cons _ xs) = seqDrop (n - 1) xs
 
 
 seqMap :: (a -> b) -> Sequence a -> Sequence b
 
 seqMap _ Nil = Nil
-seqMap f (Cons h t) = Cons (f h) (seqMap f t)
+seqMap f (Cons x xs) = Cons (f x) (seqMap f xs)
 
 
 power :: (Eq b, Num a, Num b) => a -> b -> a

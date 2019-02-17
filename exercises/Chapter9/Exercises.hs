@@ -2,13 +2,13 @@
 length' :: Num b => [a] -> b
 
 length' [] = 0
-length' (_:t) = 1 + length' t
+length' (_:xs) = 1 + length' xs
 
 
 map' :: (a -> b) -> [a] -> [b]
 
 map' f [] = []
-map' f (h:t) = f h : map' f t
+map' f (x:xs) = f x : map' f xs
 
 
 not' :: Bool -> Bool
@@ -20,13 +20,13 @@ not' True = False
 take' :: (Eq a, Num a) => a -> [b] -> [b]
 
 take' 0 l = []
-take' n (h:t) = h : take' (n - 1) t
+take' n (x:xs) = x : take' (n - 1) xs
 
 
 elem' :: Eq a => a -> [a] -> Bool
 
 elem' e [] = False
-elem' e (h:t) = h == e || elem' e t
+elem' e (x:xs) = x == e || elem' e xs
 
 
 elemAll :: Eq a => a -> [[a]] -> Bool
@@ -78,7 +78,7 @@ truncateLists n ll = map' (truncateList n) ll
 firstElt :: a -> [a] -> a
 
 firstElt n [] = n
-firstElt n (h:_) = h
+firstElt n (x:_) = x
 
 
 firstElts :: a -> [[a]] -> [a]

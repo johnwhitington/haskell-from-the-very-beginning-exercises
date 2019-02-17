@@ -7,10 +7,10 @@ printIntegersInner :: Show a => [a] -> IO ()
 printIntegersInner [] = return ()
 printIntegersInner [i] =
   putStr (show i)
-printIntegersInner (h:t) =
-  do putStr (show h)
+printIntegersInner (x:xs) =
+  do putStr (show x)
      putStr ", "
-     printIntegersInner t
+     printIntegersInner xs
 
 
 printIntegers :: Show a => [a] -> IO ()
@@ -76,25 +76,25 @@ readDict =
 map' :: (a -> b) -> [a] -> [b]
 
 map' f [] = []
-map' f (h:t) = f h : map' f t
+map' f (x:xs) = f x : map' f xs
 
 
 row :: Show a => Handle -> [a] -> IO ()
 
 row fh [] = return ()
-row fh (h:t) =
-  do hPutStr fh (show h)
+row fh (x:xs) =
+  do hPutStr fh (show x)
      hPutStr fh "\t"
-     row fh t
+     row fh xs
 
 
 rows :: (Show a, Num a, Enum a) => Handle -> a -> [a] -> IO ()
 
 rows fh n [] = return ()
-rows fh n (h:t) =
-  do row fh (map' (* h) [1 .. n])
+rows fh n (x:xs) =
+  do row fh (map' (* x) [1 .. n])
      hPutStr fh "\n"
-     rows fh n t
+     rows fh n xs
 
 
 table :: (Ord a, Num a, Show a, Enum a) => FilePath -> a -> IO ()

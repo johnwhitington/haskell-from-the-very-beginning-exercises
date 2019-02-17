@@ -1,29 +1,29 @@
 length' :: Num b => [a] -> b
 
 length' [] = 0
-length' (_:t) = 1 + length' t
+length' (_:xs) = 1 + length' xs
 
 
 take' :: (Eq a, Num a) => a -> [b] -> [b]
 
 take' 0 l = []
-take' n (h:t) = h : take' (n - 1) t
+take' n (x:xs) = x : take' (n - 1) xs
 
 
 drop' :: (Eq a, Num a) => a -> [b] -> [b]
 
 drop' 0 l = l
-drop' n (h:t) = drop' (n - 1) t
+drop' n (x:xs) = drop' (n - 1) xs
 
 
 merge :: Ord a => [a] -> [a] -> [a]
 
 merge [] l = l
 merge l [] = l
-merge (hx:tx) (hy:ty) =
-  if hx < hy
-    then hx:merge tx (hy : ty)
-    else hy:merge (hx : tx) ty
+merge (x:xs) (y:ys) =
+  if x < y
+    then x:merge xs (y : ys)
+    else y:merge (x : xs) ys
 
 
 mergeSort :: Ord a => [a] -> [a]
@@ -55,29 +55,29 @@ mergeSort2 l =
 insert :: Ord a => a -> [a] -> [a]
 
 insert x [] = [x]
-insert x (h:t) =
-  if x >= h
-    then x : h : t
-    else h : insert x t
+insert x (y:ys) =
+  if x >= y
+    then x : y : ys
+    else y : insert x ys
 
 
 sort :: Ord a => [a] -> [a]
 
 sort [] = []
-sort (h:t) = insert h (sort t)
+sort (x:xs) = insert x (sort xs)
 
 
 isSorted :: Ord a => [a] -> Bool
 
 isSorted [] = True
 isSorted [x] = True
-isSorted (a:b:t) = a <= b && isSorted (b : t)
+isSorted (x:x':xs) = x <= x' && isSorted (x' : xs)
 
 
 -- We alter the name because Haskell won't let us use a name twice in a script
 isSorted2 :: Ord a => [a] -> Bool
 
-isSorted2 (a:b:t) = a <= b && isSorted2 (b : t)
+isSorted2 (x:x':xs) = x <= x' && isSorted2 (x' : xs)
 isSorted2 _ = True
 
 
@@ -85,12 +85,12 @@ sortComplete :: Ord a => [a] -> [a]
 
 sortComplete l =
   let insert x [] = [x]
-      insert x (h:t) =
-        if x <= h
-          then x : h : t
-          else h : insert x t
+      insert x (y:ys) =
+        if x <= y
+          then x : y : ys
+          else y : insert x ys
   in
     case l of
       [] -> []
-      (h:t) -> insert h (sortComplete t)
+      (x:xs) -> insert x (sortComplete xs)
 

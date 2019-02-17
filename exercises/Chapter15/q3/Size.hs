@@ -5,7 +5,7 @@ import System.IO
 revInner :: [a] -> [a] -> [a]
 
 revInner a [] = a
-revInner a (h:t) = revInner (h : a) t
+revInner a (x:xs) = revInner (x : a) xs
 
 
 reverse' :: [a] -> [a]
@@ -17,19 +17,19 @@ reverse' l =
 map' :: (a -> b) -> [a] -> [b]
 
 map' f [] = []
-map' f (h:t) = f h : map' f t
+map' f (x:xs) = f x : map' f xs
 
 
 length' :: Num b => [a] -> b
 
 length' [] = 0
-length' (_:t) = 1 + length' t
+length' (_:xs) = 1 + length' xs
 
 
 sum' :: Num a => [a] -> a
 
 sum' [] = 0
-sum' (h:t) = h + sum' t
+sum' (x:xs) = x + sum' xs
 
 
 linesOfFile :: Handle -> IO [String]
@@ -38,8 +38,8 @@ linesOfFile h =
   do finished <- hIsEOF h
      if finished then return [] else
        do x <- hGetLine h
-          rest <- linesOfFile h
-          return (x : rest)
+          xs <- linesOfFile h
+          return (x : xs)
 
 
 numChars :: Num a => FilePath -> IO a

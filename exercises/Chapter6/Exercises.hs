@@ -1,14 +1,14 @@
 map' :: (a -> b) -> [a] -> [b]
 
 map' f [] = []
-map' f (h:t) = f h : map' f t
+map' f (x:xs) = f x : map' f xs
 
 
 calm :: String -> String
 
 calm [] = []
-calm ('!':t) = '.' : calm t
-calm (h:t) = h : calm t
+calm ('!':xs) = '.' : calm xs
+calm (x:xs) = x : calm xs
 
 
 calmChar :: Char -> Char
@@ -69,43 +69,43 @@ power a b =
 insert :: (a -> a -> Bool) -> a -> [a] -> [a]
 
 insert f x [] = [x]
-insert f x (h:t) =
-  if f x h
-    then x : h : t
-    else h : insert f x t
+insert f x (y:ys) =
+  if f x y
+    then x : y : ys
+    else y : insert f x ys
 
 
 sort :: (a -> a -> Bool) -> [a] -> [a]
 
 sort f [] = []
-sort f (h:t) = insert f h (sort f t)
+sort f (x:xs) = insert f x (sort f xs)
 
 
 filter' :: (a -> Bool) -> [a] -> [a]
 
 filter' f [] = []
-filter' f (h:t) =
-  if f h
-    then h : filter' f t
-    else filter' f t
+filter' f (x:xs) =
+  if f x
+    then x : filter' f xs
+    else filter' f xs
 
 
 all' :: (a -> Bool) -> [a] -> Bool
 
 all' f [] = True
-all' f (h:t) = f h && all' f t
+all' f (x:xs) = f x && all' f xs
 
 
 mapl :: (a -> b) -> [[a]] -> [[b]]
 
 mapl f [] = []
-mapl f (h:t) = map' f h : mapl f t
+mapl f (x:xs) = map' f x : mapl f xs
 
 
 reverse' :: [a] -> [a]
 
 reverse' [] = []
-reverse' (h:t) = reverse' t ++ [h]
+reverse' (x:xs) = reverse' xs ++ [x]
 
 
 f l = reverse' (sort (<) (filter' (\x -> x `rem` 15 == 0) l))

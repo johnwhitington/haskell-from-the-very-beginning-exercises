@@ -5,7 +5,7 @@ import System.IO
 revInner :: [a] -> [a] -> [a]
 
 revInner a [] = a
-revInner a (h:t) = revInner (h : a) t
+revInner a (x:xs) = revInner (x : a) xs
 
 
 reverse' :: [a] -> [a]
@@ -17,10 +17,10 @@ reverse' l =
 filter' :: (a -> Bool) -> [a] -> [a]
 
 filter' f [] = []
-filter' f (h:t) =
-  if f h
-    then h : filter' f t
-    else filter' f t
+filter' f (x:xs) =
+  if f x
+    then x : filter' f xs
+    else filter' f xs
 
 
 linesOfFile :: Handle -> IO [String]
@@ -29,8 +29,8 @@ linesOfFile h =
   do finished <- hIsEOF h
      if finished then return [] else
        do x <- hGetLine h
-          rest <- linesOfFile h
-          return (x : rest)
+          xs <- linesOfFile h
+          return (x : xs)
 
 
 matches1 :: String -> String -> Bool
@@ -44,15 +44,15 @@ matches :: String -> String -> Bool
 
 matches [] [] = True
 matches _ [] = False
-matches term (l:ls) = matches1 term (l : ls) || matches term ls
+matches term (x:xs) = matches1 term (x : xs) || matches term xs
 
 
 printStrings :: [String] -> IO ()
 
 printStrings [] = return ()
-printStrings (h:t) =
-  do putStrLn h
-     printStrings t
+printStrings (x:xs) =
+  do putStrLn x
+     printStrings xs
 
 
 search :: FilePath -> String -> IO ()

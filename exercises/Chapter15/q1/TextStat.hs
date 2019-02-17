@@ -16,38 +16,38 @@ type Stats = (Integer, Integer, Integer, Integer, Tree (Char, Integer))
 length' :: Num b => [a] -> b
 
 length' [] = 0
-length' (_:t) = 1 + length' t 
+length' (_:xs) = 1 + length' xs 
 
 
 take' :: (Eq a, Num a) => a -> [b] -> [b]
 
 take' 0 l = []
-take' n (h:t) = h : take' (n - 1) t
+take' n (x:xs) = x : take' (n - 1) xs
 
 
 drop' :: (Eq a, Num a) => a -> [b] -> [b]
 
 drop' 0 l = l
-drop' n (h:t) = drop' (n - 1) t
+drop' n (_:xs) = drop' (n - 1) xs
 
 
 filter' :: (a -> Bool) -> [a] -> [a]
 
 filter' f [] = []
-filter' f (h:t) =
-  if f h
-    then h : filter' f t
-    else filter' f t
+filter' f (x:xs) =
+  if f x
+    then x : filter' f xs
+    else filter' f xs
 
 
 merge :: Ord a => [a] -> [a] -> [a]
 
 merge [] l = l
 merge l [] = l
-merge (hx:tx) (hy:ty) =
-  if hx < hy
-    then hx : merge tx (hy : ty)
-    else hy : merge (hx : tx) ty
+merge (x:xs) (y:ys) =
+  if x < y
+    then x : merge xs (y : ys)
+    else y : merge (x : xs) ys
 
 
 mergeSort :: Ord a => [a] -> [a]
@@ -88,12 +88,12 @@ insert (Br (k', v') l r) k v =
 updateHistogram :: (Ord a, Num b) => Tree (a, b) -> [a] -> Tree (a, b)
 
 updateHistogram tr [] = tr
-updateHistogram tr (h:t) =
-  case treeLookup tr h of
+updateHistogram tr (x:xs) =
+  case treeLookup tr x of
     Nothing ->
-      updateHistogram (insert tr h 1) t
+      updateHistogram (insert tr x 1) xs
     Just v ->
-      updateHistogram (insert tr h (v + 1)) t
+      updateHistogram (insert tr x (v + 1)) xs
 
 
 statsFromChannel :: Handle -> Stats -> IO Stats

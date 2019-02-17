@@ -2,7 +2,7 @@
 revInner :: [a] -> [a] -> [a]
 
 revInner a [] = a
-revInner a (h:t) = revInner (h : a) t
+revInner a (x:xs) = revInner (x : a) xs
 
 
 reverse' :: [a] -> [a]
@@ -15,21 +15,21 @@ evenElements :: [a] -> [a]
 
 evenElements [] = []
 evenElements [_] = []
-evenElements (_:b:t) = b : evenElements t
+evenElements (_:x:xs) = x : evenElements xs
 
 
 -- Haskell won't let us re-use a name in a script, so we call this evenElements2
 evenElements2 :: [a] -> [a]
 
-evenElements2 (_:b:t) = b : evenElements2 t 
+evenElements2 (_:x:xs) = x : evenElements2 xs
 evenElements2 l = []
 
 
 countTrue :: Num a => [Bool] -> a
 
 countTrue [] = 0
-countTrue (True:t) = 1 + countTrue t
-countTrue (False:t) = countTrue t
+countTrue (True:xs) = 1 + countTrue xs
+countTrue (False:xs) = countTrue xs
 
 
 makePalindrome :: [a] -> [a]
@@ -48,19 +48,19 @@ dropLast :: [a] -> [a]
 
 dropLast [] = []
 dropLast [_] = []
-dropLast (h:t) = h : dropLast t
+dropLast (x:xs) = x : dropLast xs
 
 
 elem' :: Eq a => a -> [a] -> Bool
 
 elem' e [] = False
-elem' e (h:t) = h == e || elem' e t
+elem' e (x:xs) = x == e || elem' e xs
 
 
 makeSet :: Eq a => [a] -> [a]
 
 makeSet [] = []
-makeSet (h:t) = if elem' h t then makeSet t else h : makeSet t
+makeSet (x:xs) = if elem' x xs then makeSet xs else x : makeSet xs
 
 
 answer1 :: Integral a => [a]
@@ -81,7 +81,7 @@ answer3 = [x | x <- [1 .. 9999], x `rem` 21 == 0, x `rem` 83 == 0]
 length' :: Num b => [a] -> b
 
 length' [] = 0
-length' (_:t) = 1 + length' t 
+length' (_:xs) = 1 + length' xs
 
 
 countTrue3 l = length' [x | x <- l, x == True]

@@ -5,7 +5,7 @@ import Data.Char
 map' :: (a -> b) -> [a] -> [b]
 
 map' f [] = []
-map' f (h:t) = f h : map' f t
+map' f (x:xs) = f x : map' f xs
 
 
 from :: Num a => a -> [a]
@@ -15,8 +15,8 @@ from x = x : from (x + 1)
 
 interleave :: [a] -> [a] -> [a]
 
-interleave (h:t) l =
-  h : interleave l t
+interleave (x:xs) l =
+  x : interleave l xs
 
 
 doubleFrom :: Num a => a -> [a]
@@ -65,10 +65,10 @@ makeList (Br x l r) = x : interleave (makeList l) (makeList r)
 
 unleave :: [a] -> ([a], [a])
 
-unleave (h : h' : t) =
-  let (x, y) = unleave t in
-    (h : x, h' : y)
-unleave (h : _) = ([h], [])
+unleave (x : x' : xs) =
+  let (ys, zs) = unleave xs in
+    (x : ys, x' : zs)
+unleave (x : _) = ([x], [])
 unleave [] = ([], [])
 
 

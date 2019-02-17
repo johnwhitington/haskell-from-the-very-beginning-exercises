@@ -5,7 +5,7 @@ import System.IO
 revInner :: [a] -> [a] -> [a]
 
 revInner a [] = a
-revInner a (h:t) = revInner (h : a) t
+revInner a (x:xs) = revInner (x : a) xs
 
 
 reverse' :: [a] -> [a]
@@ -20,8 +20,8 @@ linesOfFile h =
   do finished <- hIsEOF h
      if finished then return [] else
        do x <- hGetLine h
-          rest <- linesOfFile h
-          return (x : rest)
+          xs <- linesOfFile h
+          return (x : xs)
 
 
 writeLines :: Handle -> [String] -> IO ()

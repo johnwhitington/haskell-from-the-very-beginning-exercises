@@ -1,7 +1,7 @@
 map' :: (a -> b) -> [a] -> [b]
 
 map' f [] = []
-map' f (h:t) = f h : map' f t
+map' f (x:xs) = f x : map' f xs
 
 
 data Tree a =
@@ -66,7 +66,7 @@ exampleMTree = Branch 1 [Branch 2 [], Branch 3 []]
 sum' :: Num a => [a] -> a
 
 sum' [] = 0
-sum' (h:t) = h + sum' t
+sum' (x:xs) = x + sum' xs
 
 
 mTreeSize :: Num a => MTree b -> a

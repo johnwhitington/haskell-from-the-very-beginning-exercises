@@ -2,14 +2,14 @@ smallestInner :: (Num a, Ord a) => Maybe a -> [a] -> Maybe a
 
 smallestInner Nothing [] = Nothing
 smallestInner (Just a) [] = Just a
-smallestInner Nothing (h:t) =
-  if h > 0
-    then smallestInner (Just h) t
-    else smallestInner Nothing t
-smallestInner (Just a) (h:t) =
-  if h > 0 && h < a
-    then smallestInner (Just h) t
-    else smallestInner (Just a) t
+smallestInner Nothing (x:xs) =
+  if x > 0
+    then smallestInner (Just x) xs
+    else smallestInner Nothing xs
+smallestInner (Just a) (x:xs) =
+  if x > 0 && x < a
+    then smallestInner (Just x) xs
+    else smallestInner (Just a) xs
 
 
 smallest :: (Num a, Ord a) => [a] -> Maybe a
@@ -40,18 +40,18 @@ sqrtMain n =
 mapMaybeDefault :: (a -> Maybe b) -> b -> [a] -> [b]
 
 mapMaybeDefault f _ [] = []
-mapMaybeDefault f d (h:t) =
-  case f h of
-    Just x -> x : mapMaybeDefault f d t
-    Nothing -> d : mapMaybeDefault f d t
+mapMaybeDefault f d (x:xs) =
+  case f x of
+    Just r -> r : mapMaybeDefault f d xs
+    Nothing -> d : mapMaybeDefault f d xs
 
 
 splitEither :: (a -> Either b c) -> [a] -> ([b], [c])
 
 splitEither f [] = ([], [])
-splitEither f (h:t) =
-  let (ls, rs) = splitEither f t in
-    case f h of
+splitEither f (x:xs) =
+  let (ls, rs) = splitEither f xs in
+    case f x of
       Left l -> (l : ls, rs)
       Right r -> (ls, r : rs)
 

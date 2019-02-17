@@ -5,7 +5,7 @@ import System.IO
 revInner :: [a] -> [a] -> [a]
 
 revInner a [] = a
-revInner a (h:t) = revInner (h : a) t
+revInner a (x:xs) = revInner (x : a) xs
 
 
 reverse' :: [a] -> [a]
@@ -17,35 +17,35 @@ reverse' l =
 map' :: (a -> b) -> [a] -> [b]
 
 map' f [] = []
-map' f (h:t) = f h : map' f t
+map' f (x:xs) = f x : map' f xs
 
 
 take' :: (Eq a, Num a) => a -> [b] -> [b]
 
 take' 0 l = []
-take' n (h:t) = h : take' (n - 1) t
+take' n (x:xs) = x : take' (n - 1) xs
 
 
 drop' :: (Eq a, Num a) => a -> [b] -> [b]
 
 drop' 0 l = l
-drop' n (h:t) = drop' (n - 1) t
+drop' n (_:xs) = drop' (n - 1) xs
 
 
 length' :: Num b => [a] -> b
 
 length' [] = 0
-length' (_:t) = 1 + length' t
+length' (_:xs) = 1 + length' xs
 
 
 merge :: Ord a => [a] -> [a] -> [a]
 
 merge [] l = l
 merge l [] = l
-merge (hx:tx) (hy:ty) =
-  if hx < hy
-    then hx : merge tx (hy : ty)
-    else hy : merge (hx : tx) ty
+merge (x:xs) (y:ys) =
+  if x < y
+    then x : merge xs (y : ys)
+    else y : merge (x : xs) ys
 
 
 mergeSort :: Integral a => [a] -> [a]
@@ -65,8 +65,8 @@ linesOfFile h =
   do finished <- hIsEOF h
      if finished then return [] else
        do x <- hGetLine h
-          rest <- linesOfFile h
-          return (x : rest)
+          xs <- linesOfFile h
+          return (x : xs)
 
 
 linesToFile :: Handle -> [String] -> IO ()

@@ -30,7 +30,7 @@ makeLists ((k, v):t) =
 member :: Eq a => a -> [a] -> Bool
 
 member x [] = False
-member x (h:t) = x == h || member x t
+member x (y:ys) = x == y || member x ys
 
 
 dictionaryOfPairsInner :: Eq a => [a] -> [(a, b)] -> [(a, b)]
@@ -57,6 +57,6 @@ add k v ((k', v'):t) =
 
 union :: Eq a => [(a, b)] -> [(a, b)] -> [(a, b)]
 
-union [] b = b
-union ((k, v):t) b = add k v (union t b)
+union [] l = l
+union ((k, v):t) l = add k v (union t l)
 
