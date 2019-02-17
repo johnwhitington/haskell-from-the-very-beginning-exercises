@@ -8,9 +8,9 @@ printDictEntry (k, v) =
 doList :: Monad m => (a -> m b) -> [a] -> m ()
 
 doList _ [] = return ()
-doList f (h:t) =
-  do f h
-     doList f t
+doList f (x:xs) =
+  do f x
+     doList f xs
 
 
 printDict :: Show a => [(a, String)] -> IO ()

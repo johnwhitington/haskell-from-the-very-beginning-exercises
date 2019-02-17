@@ -10,7 +10,7 @@ type Stats = (Integer, Integer, Integer, Integer)
 length' :: Num a => [b] -> a
 
 length' [] = 0
-length' (_:t) = 1 + length' t 
+length' (_:xs) = 1 + length' xs
 
 
 statsFromChannel :: Handle -> Stats -> IO Stats
