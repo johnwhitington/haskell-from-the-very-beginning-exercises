@@ -1,44 +1,44 @@
 insert :: Ord a => a -> [a] -> [a]
 
 insert x [] = [x]
-insert x (h:t) =
-  if x <= h
-    then x : h : t
-    else h : insert x t
+insert x (y:ys) =
+  if x <= y
+    then x : y : ys
+    else y : insert x ys
 
 
 sort :: Ord a => [a] -> [a]
 
 sort [] = []
-sort (h:t) = insert h (sort t)
+sort (x:xs) = insert x (sort xs)
 
 
 merge :: Ord a => [a] -> [a] -> [a]
 
 merge [] l = l
 merge l [] = l
-merge (hx:tx) (hy:ty) =
-  if hx < hy
-    then hx : merge tx (hy : ty)
-    else hy : merge (hx : tx) ty
+merge (x:xs) (y:ys) =
+  if x < y
+    then x : merge xs (y : ys)
+    else y : merge (x : xs) ys
 
 
 take' :: (Eq a, Num a) => a -> [b] -> [b]
 
 take' 0 l = []
-take' n (h:t) = h : take' (n - 1) t
+take' n (x:xs) = x : take' (n - 1) xs
 
 
 drop' :: (Eq a, Num a) => a -> [b] -> [b]
 
 drop' 0 l = l
-drop' n (h:t) = drop' (n - 1) t
+drop' n (x:xs) = drop' (n - 1) xs
 
 
 length' :: Num b => [a] -> b
 
 length' [] = 0
-length' (_:t) = 1 + length' t
+length' (_:xs) = 1 + length' xs
 
 
 mergeSort :: Ord a => [a] -> [a]

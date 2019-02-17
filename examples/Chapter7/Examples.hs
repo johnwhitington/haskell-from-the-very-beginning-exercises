@@ -16,13 +16,13 @@ z = Just [['x']]
 safeHead :: [a] -> Maybe a
 
 safeHead [] = Nothing
-safeHead (h:_) = Just h
+safeHead (x:_) = Just x
 
 
 safeTail :: [a] -> Maybe [a]
 
 safeTail [] = Nothing
-safeTail (_:t) = Just t
+safeTail (_:xs) = Just xs
 
 
 safeDiv :: Integral a => a -> a -> Maybe a
@@ -34,13 +34,13 @@ safeDiv x y = Just (x `div` y)
 take' :: (Eq a, Num a) => a -> [b] -> [b]
 
 take' 0 l = []
-take' n (h:t) = h : take' (n - 1) t
+take' n (x:xs) = x : take' (n - 1) xs
 
 
 drop' :: (Eq a, Num a) => a -> [b] -> [b]
 
 drop' 0 l = l
-drop' n (h:t) = drop' (n - 1) t
+drop' n (_:xs) = drop' (n - 1) xs
 
 
 length' :: Num b => [a] -> b
@@ -68,22 +68,22 @@ safeDrop n l =
 mapMaybe :: (a -> Maybe b) -> [a] -> [b]
 
 mapMaybe _ [] = []
-mapMaybe f (h:t) =
-  case f h of
-    Nothing -> mapMaybe f t
-    Just r -> r : mapMaybe f t
+mapMaybe f (x:xs) =
+  case f x of
+    Nothing -> mapMaybe f xs
+    Just r -> r : mapMaybe f xs
 
 
 -- Haskell won't let us re-use a name in a script, so we call this mapMaybe2
 mapMaybe2 :: (a -> Maybe b) -> [a] -> [b]
 
 mapMaybe2 _ [] = []
-mapMaybe2 f (h:t) =
-  case f h of
+mapMaybe2 f (x:xs) =
+  case f x of
     Nothing -> rs
     Just r -> r : rs
   where
-    rs = mapMaybe2 f t
+    rs = mapMaybe2 f xs
 
 
 safeDiv2 :: Integral a => a -> a -> Either String a  

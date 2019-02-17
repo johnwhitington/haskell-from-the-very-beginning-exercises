@@ -12,9 +12,9 @@ printDictEntry (k, v) =
 printDict :: Show a => [(a, String)] -> IO ()
 
 printDict [] = return ()
-printDict (h:t) =
-  do printDictEntry h
-     printDict t
+printDict (x:xs) =
+  do printDictEntry x
+     printDict xs
 
 
 getInteger :: IO Integer
@@ -67,9 +67,9 @@ entryToHandle fh (k, v) =
 dictionaryToHandle :: Show a => Handle -> [(a, String)] -> IO ()
 
 dictionaryToHandle fh [] = return ()
-dictionaryToHandle fh (h:t) =
-  do entryToHandle fh h
-     dictionaryToHandle fh t
+dictionaryToHandle fh (x:xs) =
+  do entryToHandle fh x
+     dictionaryToHandle fh xs
 
 
 dictionaryToFile :: Show a => FilePath -> [(a, String)] -> IO ()
@@ -142,7 +142,7 @@ fileStatistics fileName =
 length' :: Num a => [b] -> a
 
 length' [] = 0
-length' (_:t) = 1 + length' t 
+length' (_:xs) = 1 + length' xs
 
 
 handleStatistics2 ::
@@ -186,23 +186,23 @@ fileStatistics2 filename =
 take' :: (Eq a, Num a) => a -> [b] -> [b]
 
 take' 0 l = []
-take' n (h:t) = h : take' (n - 1) t
+take' n (x:xs) = x : take' (n - 1) xs
 
 
 drop' :: (Eq a, Num a) => a -> [b] -> [b]
 
 drop' 0 l = l
-drop' n (h:t) = drop' (n - 1) t
+drop' n (x:xs) = drop' (n - 1) xs
 
 
 merge :: Ord a => [a] -> [a] -> [a]
 
 merge [] l = l
 merge l [] = l
-merge (hx:tx) (hy:ty) =
-  if hx < hy
-    then hx : merge tx (hy : ty)
-    else hy : merge (hx : tx) ty
+merge (x:xs) (y:ys) =
+  if x < y
+    then x : merge xs (y : ys)
+    else y : merge (x : xs) ys
 
 
 mergeSort :: Ord a => [a] -> [a]
@@ -266,12 +266,12 @@ printHistogram tree =
 updateHistogram :: (Ord a, Num b) => Tree (a, b) -> [a] -> Tree (a, b)
 
 updateHistogram tr [] = tr
-updateHistogram tr (h:t) =
-  case lookup' tr h of
+updateHistogram tr (x:xs) =
+  case lookup' tr x of
     Nothing ->
-      updateHistogram (treeInsert tr h 1) t
+      updateHistogram (treeInsert tr x 1) xs
     Just v ->
-      updateHistogram (treeInsert tr h (v + 1)) t
+      updateHistogram (treeInsert tr x (v + 1)) xs
 
 
 handleStatistics3 ::

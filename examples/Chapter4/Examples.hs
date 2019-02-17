@@ -7,7 +7,7 @@ isNil _ = False
 length' :: Num b => [a] -> b
 
 length' [] = 0
-length' (h:t) = 1 + length' t
+length' (x:xs) = 1 + length' xs
 
 
 -- Haskell won't let us re-use a name in a script, so we call this length'2
@@ -15,48 +15,48 @@ length' (h:t) = 1 + length' t
 length'2 :: Num b => [a] -> b
 
 length'2 [] = 0
-length'2 (_:t) = 1 + length'2 t
+length'2 (_:xs) = 1 + length'2 xs
 
 
 sumElts :: Num a => [a] -> a
 
 sumElts [] = 0
-sumElts (h:t) = h + sum t
+sumElts (x:xs) = x + sum xs
 
 
 oddElements :: [a] -> [a]
 
 oddElements [] = []
-oddElements [a] = [a]
-oddElements (a:_:t) = a : oddElements t
+oddElements [x] = [x]
+oddElements (x:_:xs) = x : oddElements xs
 
 
 oddElements2 :: [a] -> [a]
 
-oddElements2 (a:_:t) = a : oddElements2 t
+oddElements2 (x:_:xs) = x : oddElements2 xs
 oddElements2 l = l
 
 
 append :: [a] -> [a] -> [a]
 
-append [] b = b
-append (h:t) b = h : append t b
+append [] y = y
+append (x:xs) y = x : append xs y
 
 
 reverse' :: [a] -> [a]
 
 reverse' [] = []
-reverse' (h:t) = reverse' t ++ [h]
+reverse' (x:xs) = reverse' xs ++ [x]
 
 
 take' :: (Eq a, Num a) => a -> [b] -> [b]
 
 take' 0 l = []
-take' n (h:t) = h : take' (n - 1) t
+take' n (x:xs) = x : take' (n - 1) xs
 
 
 drop' :: (Eq a, Num a) => a -> [b] -> [b]
 
 drop' 0 l = l
-drop' n (h:t) = drop' (n - 1) t
+drop' n (x:xs) = drop' (n - 1) xs
 

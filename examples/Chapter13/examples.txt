@@ -5,20 +5,20 @@
 map' :: (a -> b) -> [a] -> [b]
 
 map' f [] = []
-map' f (h:t) = f h : map' f t
+map' f (x:xs) = f x : map' f xs
 
 
 take' :: (Eq a, Num a) => a -> [b] -> [b]
 
 take' 0 l = []
-take' n (h:t) = h : take' (n - 1) t
+take' n (x:xs) = x : take' (n - 1) xs
 
 
 filter' :: (a -> Bool) -> [a] -> [a]
 
 filter' _ [] = []
-filter' f (h:t) =
-  if f h then h : filter' f t else filter' f t
+filter' f (x:xs) =
+  if f x then x : filter' f xs else filter' f xs
 :}
 
 
@@ -38,13 +38,13 @@ take' 20 cubes
 take' 10 (filter' (\x -> x == 0) [1..])
 
 :{
-makePrimes (h:t) =
-  h : makePrimes (filter' (\x -> x `rem` h /= 0) t)
+makePrimes (x:xs) =
+  x : makePrimes (filter' (\n -> n `rem` x /= 0) xs)
 :}
 
 primes = makePrimes [2..]
 
-interleave (h:t) l = h : interleave l t
+interleave (x:xs) l = x : interleave l xs
 
 take 20 (interleave (repeat' 0) (repeat' 1))
 

@@ -45,25 +45,25 @@ data Sequence a = Nil | Cons a (Sequence a) deriving Show
 length' :: Num b => [a] -> b
 
 length' [] = 0
-length' (_:t) = 1 + length' t
+length' (_:xs) = 1 + length' xs
 
 
 append :: [a] -> [a] -> [a]
 
-append [] b = b
-append (h:t) b = h : append t b
+append [] y = y
+append (x:xs) y = x : append xs y
 
 
 seqLength :: Num b => Sequence a -> b
 
 seqLength Nil = 0
-seqLength (Cons _ t) = 1 + seqLength t
+seqLength (Cons _ xs) = 1 + seqLength xs
 
 
 seqAppend :: Sequence a -> Sequence a -> Sequence a
 
-seqAppend Nil b = b
-seqAppend (Cons h t) b = (Cons h (seqAppend t b))
+seqAppend Nil ys = ys
+seqAppend (Cons x xs) ys = (Cons x (seqAppend xs ys))
 
 
 data Expr a = Num a

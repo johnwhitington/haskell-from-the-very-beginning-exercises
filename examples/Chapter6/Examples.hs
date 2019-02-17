@@ -1,19 +1,19 @@
 doubleList :: Num a => [a] -> [a]
 
 doubleList [] = []
-doubleList (h:t) = (h * 2) : doubleList t
+doubleList (x:xs) = (x * 2) : doubleList xs
 
 
 evens :: Integral a => [a] -> [Bool]
 
 evens [] = []
-evens (h:t) = (h `rem` 2 == 0) : evens t
+evens (x:xs) = (x `rem` 2 == 0) : evens xs
 
 
 map' :: (a -> b) -> [a] -> [b]
 
 map' f [] = []
-map' f (h:t) = f h : map' f t
+map' f (x:xs) = f x : map' f xs
 
 
 halve :: Integral a => a -> a
@@ -49,29 +49,29 @@ greater a b =
 take' :: (Eq a, Num a) => a -> [b] -> [b]
 
 take' 0 l = []
-take' n (h:t) = h : take' (n - 1) t
+take' n (x:xs) = x : take' (n - 1) xs
 
 
 drop' :: (Eq a, Num a) => a -> [b] -> [b]
 
 drop' 0 l = l
-drop' n (h:t) = drop' (n - 1) t
+drop' n (x:xs) = drop' (n - 1) xs
 
 
 length' :: Num b => [a] -> b
 
 length' [] = 0
-length' (_:t) = 1 + length' t
+length' (_:xs) = 1 + length' xs
 
 
 merge :: (a -> a -> Bool) -> [a] -> [a] -> [a]
 
 merge _ [] l = l
 merge _ l [] = l
-merge cmp (hx:tx) (hy:ty) =
-  if cmp hx hy
-       then hx : merge cmp tx (hy : ty)
-       else hy : merge cmp (hx : tx) ty
+merge cmp (x:xs) (y:ys) =
+  if cmp x y
+       then x : merge cmp xs (y : ys)
+       else y : merge cmp (x : xs) ys
 
 mergeSort :: (a -> a -> Bool) -> [a] -> [a]
 

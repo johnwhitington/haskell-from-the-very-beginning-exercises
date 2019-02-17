@@ -6,13 +6,13 @@ add x y = x + y
 map' :: (a -> b) -> [a] -> [b]
 
 map' f [] = []
-map' f (h:t) = f h : map' f t
+map' f (x:xs) = f x : map' f xs
 
 
 mapl :: (a -> b) -> [[a]] -> [[b]]
 
 mapl f [] = []
-mapl f (h:t) = map' f h : mapl f t
+mapl f (x:xs) = map' f x : mapl f xs
 
 
 -- Haskell won't let us re-use a name in a script, so we call this mapl2
