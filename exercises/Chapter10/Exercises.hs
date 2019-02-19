@@ -62,12 +62,12 @@ seqTake _ Nil = Nothing
 seqTake n (Cons x xs) =
   case seqTake (n - 1) xs of
     Nothing -> Nothing
-    Just l -> Just (Cons x l)
+    Just xs' -> Just (Cons x xs')
 
 
 seqDrop :: (Eq a, Num a) => a -> Sequence b -> Maybe (Sequence b)
 
-seqDrop 0 l = Just l
+seqDrop 0 xs = Just xs
 seqDrop _ Nil = Nothing
 seqDrop n (Cons _ xs) = seqDrop (n - 1) xs
 
