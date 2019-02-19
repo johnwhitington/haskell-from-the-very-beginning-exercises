@@ -39,8 +39,8 @@ oddElements2 l = l
 
 append :: [a] -> [a] -> [a]
 
-append [] y = y
-append (x:xs) y = x : append xs y
+append [] ys = ys
+append (x:xs) ys = x : append xs ys
 
 
 reverse' :: [a] -> [a]
@@ -51,12 +51,12 @@ reverse' (x:xs) = reverse' xs ++ [x]
 
 take' :: (Eq a, Num a) => a -> [b] -> [b]
 
-take' 0 l = []
+take' 0 _ = []
 take' n (x:xs) = x : take' (n - 1) xs
 
 
 drop' :: (Eq a, Num a) => a -> [b] -> [b]
 
 drop' 0 l = l
-drop' n (x:xs) = drop' (n - 1) xs
+drop' n (_:xs) = drop' (n - 1) xs
 
