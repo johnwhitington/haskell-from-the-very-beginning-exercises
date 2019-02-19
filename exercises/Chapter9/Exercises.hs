@@ -31,22 +31,22 @@ elem' e (x:xs) = x == e || elem' e xs
 
 elemAll :: Eq a => a -> [[a]] -> Bool
 
-elemAll x ls =
-  let booleans = map' (elem' x) ls in
+elemAll e ls =
+  let booleans = map' (elem' e) ls in
     not' (elem' False booleans)
 
 
 -- Haskell won't let us re-use a name in a script, so we call this length'2
 elemAll2 :: Eq a => a -> [[a]] -> Bool
 
-elemAll2 x ls =
-  not' (elem' False (map' (elem' x) ls))
+elemAll2 e ls =
+  not' (elem' False (map' (elem' e) ls))
 
 
 elemAll3 :: Eq a => a -> [[a]] -> Bool
 
-elemAll3 x =
-  not' . (elem' False) . (map' (elem' x))
+elemAll3 e =
+  not' . (elem' False) . (map' (elem' e))
 
 
 mapll :: (a -> b) -> [[[a]]] -> [[[b]]]
