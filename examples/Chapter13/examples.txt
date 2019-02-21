@@ -44,7 +44,7 @@ makePrimes (x:xs) =
 
 primes = makePrimes [2..]
 
-interleave (x:xs) l = x : interleave l xs
+interleave (x:xs) ys = x : interleave ys xs
 
 take 20 (interleave (repeat' 0) (repeat' 1))
 
