@@ -5,8 +5,8 @@ import System.IO
 printIntegersInner :: Show a => [a] -> IO ()
 
 printIntegersInner [] = return ()
-printIntegersInner [i] =
-  putStr (show i)
+printIntegersInner [x] =
+  putStr (show x)
 printIntegersInner (x:xs) =
   do putStr (show x)
      putStr ", "
