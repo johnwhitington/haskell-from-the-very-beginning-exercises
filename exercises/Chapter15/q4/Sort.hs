@@ -61,20 +61,20 @@ mergeSort l =
 
 linesOfFile :: Handle -> IO [String]
 
-linesOfFile h =
-  do finished <- hIsEOF h
+linesOfFile fh =
+  do finished <- hIsEOF fh
      if finished then return [] else
-       do x <- hGetLine h
-          xs <- linesOfFile h
+       do x <- hGetLine fh
+          xs <- linesOfFile fh
           return (x : xs)
 
 
 linesToFile :: Handle -> [String] -> IO ()
 
 linesToFile _ [] = return ()
-linesToFile outHandle (h:t) =
-  do hPutStrLn outHandle h
-     linesToFile outHandle t
+linesToFile fh (x:xs) =
+  do hPutStrLn fh x
+     linesToFile fh xs
 
 
 sortLines :: [String] -> [String]
@@ -102,5 +102,5 @@ main =
        [inFile, outFile] ->
           sortNums inFile outFile
        _ ->
-          putStrLn "Usage: size filename"
+          putStrLn "Usage: Sort filename"
 

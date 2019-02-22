@@ -28,5 +28,5 @@ main =
   do args <- getArgs
      case args of
        [inFile, outFile] -> copyFile inFile outFile
-       _ -> putStrLn "Usage: copyFile in out"
+       _ -> putStrLn "Usage: CopyFile in out"
 

@@ -25,11 +25,11 @@ filter' f (x:xs) =
 
 linesOfFile :: Handle -> IO [String]
 
-linesOfFile h =
-  do finished <- hIsEOF h
+linesOfFile fh =
+  do finished <- hIsEOF fh
      if finished then return [] else
-       do x <- hGetLine h
-          xs <- linesOfFile h
+       do x <- hGetLine fh
+          xs <- linesOfFile fh
           return (x : xs)
 
 
@@ -71,5 +71,5 @@ main =
   do args <- getArgs
      case args of
        [inFile, searchString] -> search inFile searchString
-       _ -> putStrLn "Usage: search <filename> <search string>"
+       _ -> putStrLn "Usage: Search <filename> <search string>"
 

@@ -6,13 +6,13 @@ import Textstat
 printHistogramList :: [(Char, Integer)] -> IO ()
 
 printHistogramList [] = return ()
-printHistogramList ((k, v):t) =
+printHistogramList ((k, v):xs) =
   do putStr "For character "
      putStr (show k)
      putStr " the count is "
      putStr (show v)
      putStrLn "."
-     printHistogramList t
+     printHistogramList xs
 
 
 printHistogram :: Textstat.Tree (Char, Integer) -> IO ()
@@ -36,5 +36,5 @@ main =
              putStrLn (show w)
              putStr "Sentences: "
              putStrLn (show s)
-       _ -> putStrLn "Usage: stats <filename>"
+       _ -> putStrLn "Usage: Stats <filename>"
 

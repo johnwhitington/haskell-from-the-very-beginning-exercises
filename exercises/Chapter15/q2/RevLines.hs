@@ -16,20 +16,20 @@ reverse' l =
 
 linesOfFile :: Handle -> IO [String]
 
-linesOfFile h =
-  do finished <- hIsEOF h
+linesOfFile fh =
+  do finished <- hIsEOF fh
      if finished then return [] else
-       do x <- hGetLine h
-          xs <- linesOfFile h
+       do x <- hGetLine fh
+          xs <- linesOfFile fh
           return (x : xs)
 
 
-writeLines :: Handle -> [String] -> IO ()
+linesToFile :: Handle -> [String] -> IO ()
 
-writeLines h [] = return ()
-writeLines h (x:xs) =
-  do hPutStrLn h x
-     writeLines h xs
+linesToFile fh [] = return ()
+linesToFile fh (x:xs) =
+  do hPutStrLn fh x
+     linesToFile fh xs
 
 
 reverseLines :: FilePath -> FilePath -> IO ()
@@ -38,7 +38,7 @@ reverseLines inFile outFile =
   do inHandle <- openFile inFile ReadMode
      outHandle <- openFile outFile WriteMode
      lines <- linesOfFile inHandle
-     writeLines outHandle (reverse' lines)
+     linesToFile outHandle (reverse' lines)
      hClose inHandle
      hClose outHandle
 
@@ -49,5 +49,5 @@ main =
   do args <- getArgs
      case args of
        [inFile, outFile] -> reverseLines inFile outFile
-       _ -> do putStrLn "Usage: revlines input_filename output_filename"
+       _ -> do putStrLn "Usage: RevLines input_filename output_filename"
 

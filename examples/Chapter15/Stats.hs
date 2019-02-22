@@ -17,5 +17,5 @@ main =
              putStrLn (show w)
              putStr "Sentences: "
              putStrLn (show s)
-       _ -> putStrLn "Usage: stats <filename>"
+       _ -> putStrLn "Usage: Stats <filename>"
 

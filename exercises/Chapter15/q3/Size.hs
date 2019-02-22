@@ -34,11 +34,11 @@ sum' (x:xs) = x + sum' xs
 
 linesOfFile :: Handle -> IO [String]
 
-linesOfFile h =
-  do finished <- hIsEOF h
+linesOfFile fh =
+  do finished <- hIsEOF fh
      if finished then return [] else
-       do x <- hGetLine h
-          xs <- linesOfFile h
+       do x <- hGetLine fh
+          xs <- linesOfFile fh
           return (x : xs)
 
 
@@ -60,5 +60,5 @@ main =
          do size <- numChars inFile
             putStrLn (show size)
        _ ->
-         putStrLn "Usage: size filename"
+         putStrLn "Usage: Size filename"
 
