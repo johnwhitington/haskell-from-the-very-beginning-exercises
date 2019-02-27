@@ -80,17 +80,23 @@ isSorted2 :: Ord a => [a] -> Bool
 isSorted2 (x:x':xs) = x <= x' && isSorted2 (x' : xs)
 isSorted2 _ = True
 
-
+-- With where
 sortComplete :: Ord a => [a] -> [a]
 
-sortComplete l =
-  let insert x [] = [x]
-      insert x (y:ys) =
-        if x <= y
-          then x : y : ys
-          else y : insert x ys
-  in
-    case l of
-      [] -> []
-      (x:xs) -> insert x (sortComplete xs)
+sortComplete [] = []
+sortComplete (x:xs) = insert x (sortComplete xs)
+  where
+    insert a [] = [a]
+    insert a (x:xs) =
+      if a <= x then a : x : xs else x : insert a xs
+ 
+-- With let
+sortComplete2 :: Ord a => [a] -> [a]
 
+sortComplete2 [] = []
+sortComplete2 (x:xs) =
+  let insert a [] = [a]
+      insert a (x:xs) =
+        if a <= x then a : x : xs else x : insert a xs
+  in
+    insert x (sortComplete2 xs)
