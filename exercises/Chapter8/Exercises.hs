@@ -22,9 +22,8 @@ makeDict (k:ks) (v:vs) =
 makeLists :: [(a, b)] -> ([a], [b])
 
 makeLists [] = ([], [])
-makeLists ((k, v):xs) =
-  let (ks, vs) = makeLists xs in
-    (k : ks, v : vs)
+makeLists ((k, v):xs) = (k : ks, v : vs)
+  where (ks, vs) = makeLists xs
 
 
 member :: Eq a => a -> [a] -> Bool
