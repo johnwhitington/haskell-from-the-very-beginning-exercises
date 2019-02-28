@@ -1,21 +1,16 @@
-smallestInner :: (Num a, Ord a) => Maybe a -> [a] -> Maybe a
-
-smallestInner Nothing [] = Nothing
-smallestInner (Just a) [] = Just a
-smallestInner Nothing (x:xs) =
-  if x > 0
-    then smallestInner (Just x) xs
-    else smallestInner Nothing xs
-smallestInner (Just a) (x:xs) =
-  if x > 0 && x < a
-    then smallestInner (Just x) xs
-    else smallestInner (Just a) xs
-
-
 smallest :: (Num a, Ord a) => [a] -> Maybe a
 
-smallest x = smallestInner Nothing x
-
+smallest x = s Nothing x where
+  s Nothing [] = Nothing
+  s (Just a) [] = Just a
+  s Nothing (x:xs) =
+    if x > 0
+      then s (Just x) xs
+      else s Nothing xs
+  s (Just a) (x:xs) =
+    if x > 0 && x < a
+      then s (Just x) xs
+      else s (Just a) xs
 
 smallest0 :: (Num a, Ord a) => [a] -> a
 
@@ -25,17 +20,12 @@ smallest0 l =
     Just a -> a
 
 
-sqrtInner :: (Num a, Ord a) => a -> a -> a
+sqrt' :: (Num a, Ord a) => a -> Maybe a
 
-sqrtInner x n =
-  if x * x > n then x - 1 else sqrtInner (x + 1) n
-
-
-sqrtMain :: (Num a, Ord a) => a -> Maybe a
-
-sqrtMain n =
-  if n < 0 then Nothing else Just (sqrtInner 1 n)
-
+sqrt' n =
+  if n < 0 then Nothing else Just (s 1 n)
+    where
+      s x n = if x * x > n then x - 1 else s (x + 1) n
 
 mapMaybeDefault :: (a -> Maybe b) -> b -> [a] -> [b]
 
