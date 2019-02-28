@@ -29,6 +29,13 @@ doubles :: Num a => [a]
 doubles = doubleFrom 1
 
 
+--With where instead
+doubles2 :: Num a => [a]
+
+doubles2 = doubleFrom 1 where
+  doubleFrom n = n : doubleFrom (n * 2)
+
+
 repeating :: [a] -> [a]
 
 repeating l = l ++ repeating l
@@ -42,6 +49,13 @@ fibInner x y = x : fibInner y (x + y)
 fib :: Num a => [a]
 
 fib = fibInner 0 1
+
+
+--With where instead
+fib2 :: Num a => [a]
+
+fib2 = fibInner 0 1 where
+  fibInner x y = x : fibInner y (x + y)
 
 
 data Tree a = Br a (Tree a) (Tree a)
