@@ -80,8 +80,7 @@ makeList (Br x l r) = x : interleave (makeList l) (makeList r)
 unleave :: [a] -> ([a], [a])
 
 unleave (x : x' : xs) =
-  let (ys, zs) = unleave xs in
-    (x : ys, x' : zs)
+  (x : ys, x' : zs) where (ys, zs) = unleave xs
 unleave (x : _) = ([x], [])
 unleave [] = ([], [])
 
