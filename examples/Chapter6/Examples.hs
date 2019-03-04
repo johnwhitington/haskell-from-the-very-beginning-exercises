@@ -78,10 +78,9 @@ mergeSort :: (a -> a -> Bool) -> [a] -> [a]
 mergeSort _ [] = []
 mergeSort _ [x] = [x]
 mergeSort cmp l =
-  let left = take' (length' l `div` 2) l
-      right = drop' (length' l `div` 2) l
-  in
-    merge cmp (mergeSort cmp left) (mergeSort cmp right)
+  merge cmp (mergeSort cmp left) (mergeSort cmp right)
+    where left = take' (length' l `div` 2) l
+          right = drop' (length' l `div` 2) l
 
 
 double x = x * 2

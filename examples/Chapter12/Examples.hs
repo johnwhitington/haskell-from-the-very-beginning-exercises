@@ -25,9 +25,7 @@ offsetPoint (x, y) (px, py) =
 scaleToLength :: (Eq a, Floating a) => a -> (a, a) -> (a, a)
 
 scaleToLength l (a, b) =
-  let currentLength = vectorLength (a, b) in
-    if currentLength == 0 then (a, b) else
-      let factor = l / currentLength in
-        (a * factor, b * factor)
-
+  if currentLength == 0 then (a, b) else (a * factor, b * factor)
+    where currentLength = vectorLength (a, b)
+          factor = l / currentLength
 

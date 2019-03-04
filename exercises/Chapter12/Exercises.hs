@@ -7,10 +7,9 @@ between (x, y) (x', y') =
 roundNum :: (Integral b, RealFrac a) => a -> b
 
 roundNum x =
-  let c = ceiling x
-      f = floor x
-  in
-    if fromIntegral c - x <= x - fromIntegral f then c else f
+  if fromIntegral c - x <= x - fromIntegral f then c else f
+    where c = ceiling x
+          f = floor x
 
 
 parts :: (Num b, RealFrac a) => a -> (b, a)
