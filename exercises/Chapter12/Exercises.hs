@@ -12,14 +12,14 @@ roundNum x =
           f = floor x
 
 
-parts :: (Num b, RealFrac a) => a -> (b, a)
+parts :: RealFrac a => a -> (Integer, a)
 
 parts x =
   if x < 0 then
     let (a, b) = parts (- x) in
       (- a, b)
   else
-    (fromIntegral (floor x), x - fromIntegral (floor x))
+    (floor x, x - fromIntegral (floor x))
 
 
 replicate' :: (Eq a, Num a) => a -> b -> [b]
