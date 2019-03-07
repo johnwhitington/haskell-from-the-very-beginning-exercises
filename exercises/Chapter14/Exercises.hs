@@ -41,7 +41,7 @@ readThree =
             readThree
 
 
-readDictNumber :: (Eq a, Num a) => a -> IO [(Integer, String)]
+readDictNumber :: Integer -> IO [(Integer, String)]
 
 readDictNumber n =
   if n == 0 then return [] else
@@ -79,7 +79,7 @@ map' f [] = []
 map' f (x:xs) = f x : map' f xs
 
 
-row :: Show a => Handle -> [a] -> IO ()
+row :: Handle -> [Integer] -> IO ()
 
 row fh [] = return ()
 row fh (x:xs) =
@@ -88,7 +88,7 @@ row fh (x:xs) =
      row fh xs
 
 
-rows :: (Show a, Num a, Enum a) => Handle -> a -> [a] -> IO ()
+rows :: Handle -> Integer -> [Integer] -> IO ()
 
 rows fh n [] = return ()
 rows fh n (x:xs) =
@@ -97,7 +97,7 @@ rows fh n (x:xs) =
      rows fh n xs
 
 
-table :: (Ord a, Num a, Show a, Enum a) => FilePath -> a -> IO ()
+table :: FilePath -> Integer -> IO ()
 
 table filename n =
   do fh <- openFile filename WriteMode
