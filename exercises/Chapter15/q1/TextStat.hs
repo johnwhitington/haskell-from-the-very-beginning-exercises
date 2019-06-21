@@ -113,10 +113,8 @@ statsFromChannel fh (lines, characters, words, sentences, histogram) =
                      line)
           statsFromChannel
             fh
-             (lines + 1,
-              characters + charCount,
-              words + wordCount,
-              sentences + sentenceCount,
+             (lines + 1, characters + charCount,
+              words + wordCount, sentences + sentenceCount,
               updateHistogram histogram line)
 
 
