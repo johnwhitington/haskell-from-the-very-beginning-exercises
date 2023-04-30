@@ -118,4 +118,6 @@ maybeEval (Multiply e e') = maybeTwo (*) (maybeEval e) (maybeEval e')
 maybeEval (Power e e') = maybeTwo power (maybeEval e) (maybeEval e')
 maybeEval (Divide e e') =
   let divisor = maybeEval e' in
-    if divisor == Just 0 then Nothing else maybeTwo div (maybeEval e) divisor
+    if divisor == Just 0
+      then Nothing
+      else maybeTwo div (maybeEval e) divisor
