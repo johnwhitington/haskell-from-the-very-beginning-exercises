@@ -97,7 +97,25 @@ evaluate :: Integral a => Expr a -> a
 
 evaluate (Num x) = x
 evaluate (Add e e') = evaluate e + evaluate e'
-evaluate (Multiply e e') = evaluate e - evaluate e'
+evaluate (Subtract e e') = evaluate e - evaluate e'
+evaluate (Multiply e e') = evaluate e * evaluate e'
 evaluate (Divide e e') = evaluate e `div` evaluate e'
 evaluate (Power e e') = power (evaluate e) (evaluate e')
 
+
+maybeTwo :: (a -> b -> c) -> Maybe a -> Maybe b -> Maybe c
+
+maybeTwo f (Just a) (Just b) = Just (f a b)
+maybeTwo _ _ _ = Nothing
+
+
+maybeEval :: Integral a => Expr a -> Maybe a
+
+maybeEval (Num x) = Just x
+maybeEval (Add e e') = maybeTwo (+) (maybeEval e) (maybeEval e')
+maybeEval (Subtract e e') = maybeTwo (-) (maybeEval e) (maybeEval e')
+maybeEval (Multiply e e') = maybeTwo (*) (maybeEval e) (maybeEval e')
+maybeEval (Power e e') = maybeTwo power (maybeEval e) (maybeEval e')
+maybeEval (Divide e e') =
+  let divisor = maybeEval e' in
+    if divisor == Just 0 then Nothing else maybeTwo div (maybeEval e) divisor
