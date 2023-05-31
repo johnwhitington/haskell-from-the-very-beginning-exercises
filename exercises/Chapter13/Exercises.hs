@@ -84,6 +84,9 @@ unleave (x : x' : xs) =
 unleave (x : _) = ([x], [])
 unleave [] = ([], [])
 
+--unleave [] = ([], [])
+--unleave (x:xs) = (x:as, bs) where (bs, as) = unleave xs
+
 
 letterString :: Int -> String
 
@@ -99,4 +102,3 @@ letterString n =
 alphas :: [String]
 
 alphas = map' letterString [1 ..]
-
